@@ -2,10 +2,11 @@
 from unittest import TestCase
 
 from grid.atomgrid import AtomGrid
-from grid.interpolate import interpolate, spline_with_atomic_grid
+from grid.interpolate import interpolate_given_splines, spline_with_atomic_grid
 from grid.onedgrid import GaussChebyshev
 from grid.poisson import Poisson
 from grid.rtransform import BeckeRTransform, InverseRTransform
+from grid.utils import convert_cart_to_sph
 
 import numpy as np
 from numpy.testing import assert_allclose, assert_almost_equal
@@ -34,7 +35,7 @@ class TestPoisson(TestCase):
             r = np.random.rand(1)[0] * 2
             theta = np.random.rand(10) * 3.14
             phi = np.random.rand(10) * 3.14
-            result = interpolate(spl_res, r, theta, phi)
+            result = interpolate_given_splines(spl_res, r, theta, phi)
             x = r * np.sin(phi) * np.cos(theta)
             y = r * np.sin(phi) * np.sin(theta)
             z = r * np.cos(phi)
@@ -42,7 +43,7 @@ class TestPoisson(TestCase):
             # assert similar value less than 1e-4 discrepancy
             assert_allclose(result, result_ref, atol=1e-4)
 
-        sph_coor = atgrid.convert_cart_to_sph()[:, 1:3]
+        sph_coor = convert_cart_to_sph(atgrid.points, atgrid.center)[:, 1:3]
         spls_mt = Poisson._proj_sph_value(
             atgrid.rgrid,
             sph_coor,
@@ -74,7 +75,7 @@ class TestPoisson(TestCase):
 
         # test density sum up to np.pi**(3 / 2)
         assert_allclose(p_0, np.pi ** 1.5, atol=1e-4)
-        sph_coor = atgrid.convert_cart_to_sph()[:, 1:3]
+        sph_coor = convert_cart_to_sph(atgrid.points, atgrid.center)[:, 1:3]
         spls_mt = Poisson._proj_sph_value(
             atgrid.rgrid,
             sph_coor,
@@ -152,7 +153,7 @@ class TestPoisson(TestCase):
 
         # test density sum up to np.pi**(3 / 2)
         assert_allclose(p_0, np.pi ** 1.5, atol=1e-4)
-        sph_coor = atgrid.convert_cart_to_sph()[:, 1:3]
+        sph_coor = convert_cart_to_sph(atgrid.points, atgrid.center)[:, 1:3]
         spls_mt = Poisson._proj_sph_value(
             atgrid.rgrid,
             sph_coor,
@@ -210,7 +211,7 @@ class TestPoisson(TestCase):
 
         # test density sum up to np.pi**(3 / 2)
         assert_allclose(p_0, np.pi ** 1.5, atol=1e-4)
-        sph_coor = atgrid.convert_cart_to_sph()
+        sph_coor = convert_cart_to_sph(atgrid.points, atgrid.center)
         with self.assertRaises(ValueError):
             Poisson._proj_sph_value(
                 atgrid.rgrid,

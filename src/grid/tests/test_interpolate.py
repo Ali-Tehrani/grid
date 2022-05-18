@@ -35,6 +35,7 @@ from grid.interpolate import (
 from grid.lebedev import AngularGrid
 from grid.onedgrid import GaussLegendre
 from grid.rtransform import BeckeRTransform, IdentityRTransform
+from grid.utils import convert_cart_to_sph
 
 import numpy as np
 from numpy.testing import assert_allclose, assert_almost_equal, assert_array_equal
@@ -136,7 +137,7 @@ class TestInterpolate(TestCase):
         odg = OneDGrid(np.arange(10) + 1, np.ones(10), (0, np.inf))
         rad = IdentityRTransform().transform_1d_grid(odg)
         atgrid = AtomGrid.from_pruned(rad, 1, sectors_r=[], sectors_degree=[7])
-        sph_coor = atgrid.convert_cart_to_sph()
+        sph_coor = convert_cart_to_sph(atgrid.points, atgrid.center)
         values = self.helper_func_power(atgrid.points)
         l_max = atgrid.l_max // 2
         r_sph = generate_real_sph_harms(l_max, sph_coor[:, 1], sph_coor[:, 2])
@@ -222,7 +223,7 @@ class TestInterpolate(TestCase):
         values = self.helper_func_power(atgrid.points)
         result = spline_with_atomic_grid(atgrid, values)
         # Obtain the spherical coordinates and interpolate from indices[5] to indices[6]
-        sph_coor = atgrid.convert_cart_to_sph()
+        sph_coor = convert_cart_to_sph(atgrid.points, atgrid.center)
         semi_sph_c = sph_coor[atgrid.indices[5] : atgrid.indices[6]]
         interp = interpolate_given_splines(
             result, rad.points[5], semi_sph_c[:, 1], semi_sph_c[:, 2]
@@ -235,7 +236,7 @@ class TestInterpolate(TestCase):
         odg = OneDGrid(np.arange(10) + 1, np.ones(10), (0, np.inf))
         rad = IdentityRTransform().transform_1d_grid(odg)
         atgrid = AtomGrid.from_pruned(rad, 1, sectors_r=[], sectors_degree=[7])
-        sph_coor = atgrid.convert_cart_to_sph()
+        sph_coor = convert_cart_to_sph(atgrid.points, atgrid.center)
         values = self.helper_func_power(atgrid.points)
         l_max = atgrid.l_max // 2
         r_sph = generate_real_sph_harms(l_max, sph_coor[:, 1], sph_coor[:, 2])
@@ -278,7 +279,7 @@ class TestInterpolate(TestCase):
         odg = OneDGrid(np.arange(10) + 1, np.ones(10), (0, np.inf))
         rad = IdentityRTransform().transform_1d_grid(odg)
         atgrid = AtomGrid.from_pruned(rad, 1, sectors_r=[], sectors_degree=[7])
-        sph_coor = atgrid.convert_cart_to_sph()
+        sph_coor = convert_cart_to_sph(atgrid.points, atgrid.center)
         values = self.helper_func_power(atgrid.points)
         l_max = atgrid.l_max // 2
         r_sph = generate_real_sph_harms(l_max, sph_coor[:, 1], sph_coor[:, 2])

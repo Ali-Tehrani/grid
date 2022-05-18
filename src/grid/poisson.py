@@ -1,6 +1,6 @@
 """Poisson solver module."""
 
-from grid.interpolate import compute_spline_point_value, generate_real_sph_harms
+from grid.interpolate import project_function_onto_spherical_expansion, generate_real_sph_harms
 from grid.ode import ODE
 
 import numpy as np
@@ -47,7 +47,7 @@ class Poisson:
         ms, ls = real_sph.shape[:-1]
         # store spline for each p^{lm}
         spls_mtr = np.zeros((ms, ls), dtype=object)
-        ml_sph_value = compute_spline_point_value(
+        ml_sph_value = project_function_onto_spherical_expansion(
             real_sph, value_array, weights, indices
         )
         ml_sph_value /= (radial.points ** 2 * radial.weights)[:, None, None]

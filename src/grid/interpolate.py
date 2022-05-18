@@ -23,6 +23,7 @@ import warnings
 
 from grid.atomgrid import AtomGrid
 from grid.basegrid import OneDGrid
+from grid.utils import convert_cart_to_sph
 
 import numpy as np
 
@@ -235,7 +236,7 @@ def spline_with_atomic_grid(atgrid: AtomGrid, func_vals: np.ndarray):
     """
     l_max = atgrid.l_max // 2
     # Convert grid points from Cartesian to Spherical coordinates
-    sph_coor = atgrid.convert_cart_to_sph()
+    sph_coor = convert_cart_to_sph(atgrid.points, atgrid.center)
     # Construct all real spherical harmonics up to degree l_max on the grid points
     r_sph = generate_real_sph_harms(l_max, sph_coor[:, 1], sph_coor[:, 2])
     return spline_with_sph_harms(

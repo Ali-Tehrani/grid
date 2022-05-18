@@ -269,31 +269,6 @@ class AtomGrid(Grid):
             new_wts = wts
         return AngularGrid(pts, new_wts)
 
-    def convert_cart_to_sph(self, points=None, center=None):
-        """Convert a set of points from cartesian to spherical coordinates.
-
-        Parameters
-        ----------
-        points : np.ndarray(n, 3), optional
-            3 dimentional numpy array for points
-            atomic grid points will be used if `points` is not given
-        center : np.ndarray(3,), optional
-            center of the spherical coordinates
-            atomic center will be used if `center` is not given
-
-        Returns
-        -------
-        np.ndarray(N, 3)
-            Spherical coordinates of atoms respect to the center
-            [radius, azumuthal, polar]
-        """
-        if points is None:
-            points = self.points
-        if points.ndim == 1:
-            points = points.reshape(-1, 3)
-        center = self.center if center is None else np.asarray(center)
-        return convert_cart_to_sph(points, center)
-
     def fit_values(self, value_array):
         """Fit given value arrays into splines that matches atomic grid.
 
@@ -314,7 +289,7 @@ class AtomGrid(Grid):
                 f"The size of grid: {self.size}"
             )
         if self._basis is None:
-            theta, phi = self.convert_cart_to_sph().T[1:]
+            theta, phi = convert_cart_to_sph(self.points, self.center).T[1:]
             self._basis = self._generate_real_sph_harm(self.l_max // 2, theta, phi)
         prod_value = self._basis * value_array * self.weights
         rad_values = [
@@ -354,7 +329,7 @@ class AtomGrid(Grid):
         np.ndarray(N,)
             the value interpolated at each given points
         """
-        r_pts, theta, phi = self.convert_cart_to_sph(points).T
+        r_pts, theta, phi = convert_cart_to_sph(points, self.center).T
         # compute splines for given value_array on grid points
         splines = self.fit_values(value_array)
         r_values = np.array([spline(r_pts, deriv) for spline in splines])
