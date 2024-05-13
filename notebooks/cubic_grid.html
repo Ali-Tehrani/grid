@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cubic Grids &mdash; grid  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interpolation and Solving Poisson’s Equation" href="interpolation_poisson.html" />
+    <link rel="prev" title="Molecular Grids" href="molecular_grid.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            grid
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#downloading-code">Downloading Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#id1">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#building-documentation">Building Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../onedgrids.html">One-Dimensional Grids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radial_transf.html">Radial Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../conventions.html#spherical-coordinates">Spherical Coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../conventions.html#spherical-harmonics">Spherical Harmonics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../conventions.html#ordering">Ordering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../conventions.html#angular-grids">Angular Grids</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../conventions.html#nested-grids">Nested Grids</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#One-Dimensional-Grids">One-Dimensional Grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#Angular-Grids">Angular Grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#Atomic-Grid">Atomic Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#Molecular-Grid">Molecular Grid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#Visualize-3D-Grid-Points">Visualize 3D Grid Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#Integrate-Electron-Density-on-the-Grid">Integrate Electron Density on the Grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#Interpolate-Electron-Density-on-the-Grid">Interpolate Electron Density on the Grid</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#Check-Interpolation-Accuracy">Check Interpolation Accuracy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#Differentiate-Electron-Density-on-the-Grid">Differentiate Electron Density on the Grid</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#Check-interpolated-derivative-accuracy">Check interpolated derivative accuracy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#Graphical-comparisons-of-the-accuracy">Graphical comparisons of the accuracy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="one_dimensional_grids.html">One-Dimensional Grids</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="one_dimensional_grids.html#Example:-Visualize-One-Dimensional-Grid-Points">Example: Visualize One-Dimensional Grid Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="one_dimensional_grids.html#Example:-Integration-of-One-Variable-Function-on-[-1,-1]">Example: Integration of One-Variable Function on <span class="math notranslate nohighlight">\([-1, 1]\)</span></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="one_dimensional_grids.html#Radial-Grid:-Transformation-of-1D-Integration-Intervals">Radial Grid: Transformation of 1D-Integration Intervals</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="one_dimensional_grids.html#Visualize-Radial-Grid-Points">Visualize Radial Grid Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="one_dimensional_grids.html#Example:-Integration-of-One-Variable-Function-on-[0,-\infty]">Example: Integration of One-Variable Function on <span class="math notranslate nohighlight">\([0, \infty]\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="angular_grid.html">Angular Grids</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="angular_grid.html#Initialization-of-Angular-Grids">Initialization of Angular Grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="angular_grid.html#Integral-of-Identity-Function">Integral of Identity Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="angular_grid.html#Integral-of-Spherical-Harmonic-Function">Integral of Spherical Harmonic Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="angular_grid.html#Spherical-Harmonics-Are-Orthonormal">Spherical Harmonics Are Orthonormal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="atom_grid_construction.html">Atom Grid Construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="atom_grid_construction.html#Atomic-Grid-AtomGrid">Atomic Grid <code class="docutils literal notranslate"><span class="pre">AtomGrid</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="atom_grid_construction.html#Plot-AtomGrid-Points">Plot <code class="docutils literal notranslate"><span class="pre">AtomGrid</span></code> Points</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="atom_grid_construction.html#Pruned-Grids-AtomGrid.from_pruned">Pruned Grids <code class="docutils literal notranslate"><span class="pre">AtomGrid.from_pruned</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="atom_grid_construction.html#Preset-Grids-AtomGrid.from_preset">Preset Grids <code class="docutils literal notranslate"><span class="pre">AtomGrid.from_preset</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="atom_grid_construction.html#Multiple-Centered-AtomGrids">Multiple Centered AtomGrids</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="atom_grid.html">Atom Grid Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="atom_grid.html#Construct-Atomic-Grid">Construct Atomic Grid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="atom_grid.html#Example:-Integrate-Electron-Density">Example: Integrate Electron Density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="atom_grid.html#Example:-Calculate-Radial-Electron-Density-Distribution">Example: Calculate Radial Electron Density Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="atom_grid.html#Example:-Calculate-Classical-Coulomb-Repulsion-Energy">Example: Calculate Classical Coulomb Repulsion Energy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="molecular_grid_construction.html">Molecular Grid Construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid_construction.html#Molecular-Grid-Details">Molecular Grid Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid_construction.html#Construction-of-Molecular-Grid">Construction of Molecular Grid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid_construction.html#Constructor">Constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid_construction.html#from_preset-method">from_preset method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid_construction.html#from_size-method">from_size method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid_construction.html#from_pruned-method">from_pruned method</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="molecular_grid.html">Molecular Grid Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Integration">Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="molecular_grid.html#Example:-Electron-Density">Example: Electron Density</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Local-Properties">Local Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Interpolation">Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Derivative-Interpolation">Derivative Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="molecular_grid.html#Solving-Poisson-Equation">Solving Poisson Equation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cubic Grids</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Tensor-1D-Grids">Tensor 1D Grids</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Example-1:-Interpolation">Example 1: Interpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Example-2:-Visualization-of-2p_{z}-Orbital-using-Tensor-1D-Grid">Example 2: Visualization of <span class="math notranslate nohighlight">\(2p_{z}\)</span> Orbital using Tensor 1D Grid</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#i.-Utility-Function-For-Plotting-Isosurfaces">i. Utility Function For Plotting Isosurfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ii.-Plot-2p_{z}-orbital-from-isosurface-value">ii. Plot <span class="math notranslate nohighlight">\(2p_{z}\)</span> orbital from isosurface value</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Uniform-Grid">Uniform Grid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Example-1:-Constructing-Uniform-Grid-Around-Formaldehyde-Anion">Example 1: Constructing Uniform Grid Around Formaldehyde Anion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Example-2:-Calculate-and-Visualize-Dual-Descriptor-of-Formaldehyde">Example 2: Calculate and Visualize Dual Descriptor of Formaldehyde</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#i.-Define-utility-function-to-calculate-the-dual-descriptor">i. Define utility function to calculate the dual descriptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ii.-Calculate-and-visualize-dual-descriptor">ii. Calculate and visualize dual descriptor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Example-3:-Integrate-The-Dual-Descriptor-Domains">Example 3: Integrate The Dual Descriptor Domains</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#i.-Define-utility-function-to-extract-dual-descriptor-domains">i. Define utility function to extract dual descriptor domains</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ii.-Select-and-integrate-the-positive-(electrophilic)-domains-of-the-dual-descriptor">ii. Select and integrate the positive (electrophilic) domains of the dual descriptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iii.-Select-and-integrate-the-negative-(nucleophilic)-domains-of-the-dual-descriptor">iii. Select and integrate the negative (nucleophilic) domains of the dual descriptor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interpolation_poisson.html">Interpolation and Solving Poisson’s Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interpolation_poisson.html#Details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolation_poisson.html#Example:-Unit-charge-distribution">Example: Unit-charge distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolation_poisson.html#Solving-Poisson-Equation">Solving Poisson Equation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multipole_moments.html">Multipole Moments</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pyapi/modules.html">grid</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pyapi/grid.html">grid package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pyapi/grid.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.angular.html">grid.angular module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.atomgrid.html">grid.atomgrid module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.basegrid.html">grid.basegrid module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.becke.html">grid.becke module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.cubic.html">grid.cubic module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.hirshfeld.html">grid.hirshfeld module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.molgrid.html">grid.molgrid module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.ode.html">grid.ode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.onedgrid.html">grid.onedgrid module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.periodicgrid.html">grid.periodicgrid module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.poisson.html">grid.poisson module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.rtransform.html">grid.rtransform module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pyapi/grid.utils.html">grid.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../pyapi/grid.html#module-grid">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">grid</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Cubic Grids</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/cubic_grid.nblink" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><a class="reference external" href="https://colab.research.google.com/github/theochem/grid/blob/master/examples/Cubic_Grids.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="section" id="Cubic-Grids">
+<h1>Cubic Grids<a class="headerlink" href="#Cubic-Grids" title="Permalink to this heading"></a></h1>
+<p>Cubic grids are commonly found in many other packages and are useful for visualization, interpolation and integration purposes.</p>
+<p>In Grid, it offers two classes for constructing these cubic (or Hyper-rectangular) grids in three-dimensions:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../pyapi/grid.cubic.html#grid.cubic.Tensor1DGrids"><span class="std std-ref">Tensor1DGrids</span></a> : Tensor product of three one-dimensional grids.</p></li>
+<li><p><a class="reference internal" href="../pyapi/grid.cubic.html#grid.cubic.UniformGrid"><span class="std std-ref">UniformGrid</span></a> : Evenly spaced grid in three axes.</p></li>
+</ul>
+<p>See their API documentation for more information about the classes. This example illustrates how to use these grid classes for both visualization, interpolation (including differentiation), and integration, with a focus on usage in quantum chemistry. It is recommended for general usage to use the Tensor1DGrids and for quantum chemistry applications, to use the UniformGrid class.</p>
+<div class="section" id="Tensor-1D-Grids">
+<h2>Tensor 1D Grids<a class="headerlink" href="#Tensor-1D-Grids" title="Permalink to this heading"></a></h2>
+<p>The first grid is a tensor combination of three grids with points <span class="math notranslate nohighlight">\(\{p^1_i\}, \{p^2_i\}, \{p^3_i\}\)</span> and weights <span class="math notranslate nohighlight">\(\{w^1_i\}, \{w^2_i\}, \{w^3_i\}\)</span> such that the new set of points are <span class="math notranslate nohighlight">\(\{(p^1_i, p^2_j, p^3_k)\}\)</span> with weights <span class="math notranslate nohighlight">\(\{w^1_i \times w^2_j \times w^3_k\}\)</span>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">grid.onedgrid</span> <span class="kn">import</span> <span class="n">UniformInteger</span>
+<span class="kn">from</span> <span class="nn">grid.rtransform</span> <span class="kn">import</span> <span class="n">LinearInfiniteRTransform</span>
+<span class="kn">from</span> <span class="nn">grid.cubic</span> <span class="kn">import</span> <span class="n">Tensor1DGrids</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># Construct a grid between -10 and 10 on the real line.</span>
+<span class="n">npoints</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">oned_gridx</span> <span class="o">=</span> <span class="n">UniformInteger</span><span class="p">(</span><span class="n">npoints</span><span class="p">)</span>
+<span class="n">oned_gridx</span> <span class="o">=</span> <span class="n">LinearInfiniteRTransform</span><span class="p">(</span><span class="o">-</span><span class="n">limit</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span><span class="o">.</span><span class="n">transform_1d_grid</span><span class="p">(</span><span class="n">oned_gridx</span><span class="p">)</span>
+
+<span class="c1"># Construct another grid between -0.5 and 0.5 on the real line</span>
+<span class="n">npoints</span> <span class="o">=</span> <span class="mi">45</span>
+<span class="n">oned_gridy</span> <span class="o">=</span> <span class="n">UniformInteger</span><span class="p">(</span><span class="n">npoints</span><span class="p">)</span>
+<span class="n">oned_gridy</span> <span class="o">=</span> <span class="n">LinearInfiniteRTransform</span><span class="p">(</span><span class="o">-</span><span class="n">limit</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span><span class="o">.</span><span class="n">transform_1d_grid</span><span class="p">(</span><span class="n">oned_gridy</span><span class="p">)</span>
+
+<span class="c1"># Construct another grid between -10 and 10 on the real line</span>
+<span class="n">npoints</span> <span class="o">=</span> <span class="mi">55</span>
+<span class="n">oned_gridz</span> <span class="o">=</span> <span class="n">UniformInteger</span><span class="p">(</span><span class="n">npoints</span><span class="p">)</span>
+<span class="n">oned_gridz</span> <span class="o">=</span> <span class="n">LinearInfiniteRTransform</span><span class="p">(</span><span class="o">-</span><span class="n">limit</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span><span class="o">.</span><span class="n">transform_1d_grid</span><span class="p">(</span><span class="n">oned_gridz</span><span class="p">)</span>
+
+<span class="c1"># Constructing the tensor product grid.</span>
+<span class="n">tensor_grid</span> <span class="o">=</span> <span class="n">Tensor1DGrids</span><span class="p">(</span><span class="n">oned_gridx</span><span class="p">,</span> <span class="n">oned_gridy</span><span class="p">,</span> <span class="n">oned_gridz</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Each of the individual grids axes are plotted.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits</span> <span class="kn">import</span> <span class="n">mplot3d</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">oned_gridx</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span>  <span class="nb">len</span><span class="p">(</span><span class="n">oned_gridx</span><span class="o">.</span><span class="n">points</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span>  <span class="nb">len</span><span class="p">(</span><span class="n">oned_gridx</span><span class="o">.</span><span class="n">points</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Points on x-axis&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span>  <span class="nb">len</span><span class="p">(</span><span class="n">oned_gridy</span><span class="o">.</span><span class="n">points</span><span class="p">),</span> <span class="n">oned_gridy</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span>  <span class="nb">len</span><span class="p">(</span><span class="n">oned_gridy</span><span class="o">.</span><span class="n">points</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Points on y-axis&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span>  <span class="nb">len</span><span class="p">(</span><span class="n">oned_gridz</span><span class="o">.</span><span class="n">points</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span>  <span class="nb">len</span><span class="p">(</span><span class="n">oned_gridz</span><span class="o">.</span><span class="n">points</span><span class="p">),</span> <span class="n">oned_gridz</span><span class="o">.</span><span class="n">points</span> <span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Points on z-axis&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;X-axis&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Y-axis&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;Z-axis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_5_0.png" src="../_images/notebooks_cubic_grid_5_0.png" />
+</div>
+</div>
+<p>The Tensor1DGrids can now be easily constructed by passing in each of the three one-dimensional grids. These are then plotted</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tensor_grid</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;X-axis&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Y-axis&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;Z-axis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Tensor Product of Three One-Dimensional Grids&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Points of the grid: </span><span class="si">{</span><span class="n">tensor_grid</span><span class="o">.</span><span class="n">points</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Weights of the grid: </span><span class="si">{</span><span class="n">tensor_grid</span><span class="o">.</span><span class="n">weights</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The number of points: </span><span class="si">{</span><span class="n">tensor_grid</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The number of dimensions: </span><span class="si">{</span><span class="n">tensor_grid</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The origin of the grid: </span><span class="si">{</span><span class="n">tensor_grid</span><span class="o">.</span><span class="n">origin</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The shape of the grid: </span><span class="si">{</span><span class="n">tensor_grid</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Conversion from indices i to coordinates (i, j, k) to points</span>
+<span class="n">coordinate</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">index_to_coordinates</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coordinate of the fifth point: </span><span class="si">{</span><span class="n">coordinate</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">coordinates_to_index</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index of the (0, 0, 5) coordinate: </span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_7_0.png" src="../_images/notebooks_cubic_grid_7_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Points of the grid: [[-10.         -10.         -10.        ]
+ [-10.         -10.          -9.62962963]
+ [-10.         -10.          -9.25925926]
+ ...
+ [ 10.          10.           9.25925926]
+ [ 10.          10.           9.62962963]
+ [ 10.          10.          10.        ]]
+Weights of the grid: [0.06871435 0.06871435 0.06871435 ... 0.06871435 0.06871435 0.06871435].
+The number of points: 123750
+The number of dimensions: 3.
+The origin of the grid: [-10. -10. -10.].
+The shape of the grid: (50, 45, 55).
+Coordinate of the fifth point: (0, 0, 5).
+Index of the (0, 0, 5) coordinate: 5.
+</pre></div></div>
+</div>
+<div class="section" id="Example-1:-Interpolation">
+<h3>Example 1: Interpolation<a class="headerlink" href="#Example-1:-Interpolation" title="Permalink to this heading"></a></h3>
+<p>This example will attempt to interpolate a Gaussian, first on a subset of the points used for interpolation then later on random set of points.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interpolation of a Gaussian</span>
+<span class="n">gaussian</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">pts</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">gaus_vals</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">tensor_grid</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+
+<span class="c1"># Interpolation evaluated on subset of the same points used for interpolation</span>
+<span class="n">subset</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">tensor_grid</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="mi">10</span><span class="p">)]</span>
+<span class="n">true_vals</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">subset</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Interpolate using linear method.&quot;</span><span class="p">)</span>
+<span class="n">interpol</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The errors are: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span> <span class="o">-</span> <span class="n">true_vals</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum error is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">true_vals</span><span class="p">))</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Interpolate using linear method applying the logarithm.&quot;</span><span class="p">)</span>
+<span class="n">interpol</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The errors are: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span> <span class="o">-</span> <span class="n">true_vals</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum error is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">true_vals</span><span class="p">))</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Interpolate using cubic splines&quot;</span><span class="p">)</span>
+<span class="n">interpol</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cubic&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The errors are: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span> <span class="o">-</span> <span class="n">true_vals</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum error is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">true_vals</span><span class="p">))</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inteprolate using cubic splines appling the logarithm&quot;</span><span class="p">)</span>
+<span class="n">interpol</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cubic&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The errors are: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span> <span class="o">-</span> <span class="n">true_vals</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum error is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">true_vals</span><span class="p">))</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Interpolate using linear method.
+The errors are:  [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+Maximum error is 0.0
+
+Interpolate using linear method applying the logarithm.
+The errors are:  [171.46716217  70.30215474  78.32720365  32.11924387 130.53013235
+  28.19417151  35.37443308  85.77553134  85.69913673  26.65532941]
+Maximum error is 171.4671621664289
+
+Interpolate using cubic splines
+The errors are:  [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+Maximum error is 0.0
+
+Inteprolate using cubic splines appling the logarithm
+The errors are:  [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+Maximum error is 0.0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interpolate at random set of points</span>
+<span class="n">random_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">true_vals</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">random_pts</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Interpolate using linear method.&quot;</span><span class="p">)</span>
+<span class="n">interpol</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">random_pts</span><span class="p">,</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The errors are: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span> <span class="o">-</span> <span class="n">true_vals</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum error is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">true_vals</span><span class="p">))</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># The logarithm is first applied to the Gaussian functions to be easier to interpolate at.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Interpolate using linear method applying the logarithm.&quot;</span><span class="p">)</span>
+<span class="n">interpol</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">random_pts</span><span class="p">,</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The errors are: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span> <span class="o">-</span> <span class="n">true_vals</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum error is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">true_vals</span><span class="p">))</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Rather then interpolate using linearly, this used the cubic</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Interpolate using cubic splines&quot;</span><span class="p">)</span>
+<span class="n">interpol</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">random_pts</span><span class="p">,</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cubic&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The errors are: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span> <span class="o">-</span> <span class="n">true_vals</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum error is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">true_vals</span><span class="p">))</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Same as above but the logarithm is applied.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inteprolate using cubic splines appling the logarithm&quot;</span><span class="p">)</span>
+<span class="n">interpol</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">random_pts</span><span class="p">,</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cubic&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The errors are: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span> <span class="o">-</span> <span class="n">true_vals</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum error is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">interpol</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">true_vals</span><span class="p">))</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Interpolate using linear method.
+The errors are:  [0.01233929 0.00172326 0.01414473 0.00302718 0.03765561 0.00854703
+ 0.00573863 0.0096147  0.06938564 0.00885821 0.03244877 0.00313253
+ 0.00879784 0.02016751 0.00573694 0.014182   0.00269118 0.01196634
+ 0.00416348 0.05229362 0.00944945 0.00436619 0.02369888 0.01221546
+ 0.03681424]
+Maximum error is 0.0693856422879573
+
+Interpolate using linear method applying the logarithm.
+The errors are:  [1.5443592  1.71594526 1.34273699 1.80571319 1.18542439 1.62956061
+ 1.63051993 1.45611032 1.11876818 1.40452868 1.24498067 2.56010903
+ 1.54114751 1.13349723 1.88518539 1.45877593 1.86029613 1.40771558
+ 2.29762085 1.07745488 1.60149404 2.39484291 1.27974207 1.19860893
+ 1.19903943]
+Maximum error is 2.560109034575345
+
+Interpolate using cubic splines
+The errors are:  [3.86592728e-04 4.22040488e-04 1.66738913e-04 4.13390441e-04
+ 1.01639001e-03 4.34750401e-05 5.16147392e-05 9.61299995e-05
+ 1.64110278e-03 5.10977886e-04 1.88314046e-04 1.11520856e-04
+ 5.16837466e-04 8.08227555e-04 1.77906599e-04 2.64324388e-05
+ 1.57194487e-04 3.27801023e-04 2.26379162e-04 1.25083661e-03
+ 2.33331268e-04 4.52028716e-04 3.51733200e-04 8.65339717e-04
+ 8.68365576e-04]
+Maximum error is 0.0016411027780264265
+
+Inteprolate using cubic splines appling the logarithm
+The errors are:  [5.55111512e-17 5.55111512e-17 1.66533454e-16 1.11022302e-16
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 1.11022302e-16
+ 1.11022302e-16 0.00000000e+00 0.00000000e+00 4.16333634e-17
+ 1.11022302e-16 0.00000000e+00 8.32667268e-17 1.66533454e-16
+ 5.55111512e-17 1.11022302e-16 5.55111512e-17 1.11022302e-16
+ 1.11022302e-16 1.11022302e-16 1.11022302e-16 1.11022302e-16
+ 0.00000000e+00]
+Maximum error is 1.6653345369377348e-16
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Derivative can be interpolated</span>
+<span class="c1"># X-derivative</span>
+<span class="n">deriv_x</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">random_pts</span><span class="p">,</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nu_x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nu_y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nu_z</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cubic&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Derivative in x-direction </span><span class="si">{</span><span class="n">deriv_x</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="c1"># Y-derivative</span>
+<span class="n">deriv_y</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">random_pts</span><span class="p">,</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nu_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nu_y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nu_z</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cubic&quot;</span><span class="p">)</span>
+<span class="c1"># Z-derivative</span>
+<span class="n">deriv_z</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">random_pts</span><span class="p">,</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nu_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nu_y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nu_z</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cubic&quot;</span><span class="p">)</span>
+<span class="c1"># XY- derivative</span>
+<span class="n">deriv_xy</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">random_pts</span><span class="p">,</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nu_x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nu_y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nu_z</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cubic&quot;</span><span class="p">)</span>
+<span class="c1"># The logarithm can be used to interpolate derivatives on single points only (mixed derivative are not supported)</span>
+<span class="n">derivs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">random_pts</span><span class="p">:</span>
+    <span class="n">deriv_x</span> <span class="o">=</span> <span class="n">tensor_grid</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pt</span><span class="p">]),</span> <span class="n">gaus_vals</span><span class="p">,</span> <span class="n">use_log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nu_x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nu_y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nu_z</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cubic&quot;</span><span class="p">)</span>
+    <span class="n">derivs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">deriv_x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Derivative (using logarithm) in x-direction </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">derivs</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Derivative in x-direction [ 0.30734258  0.24753392 -0.10164385 -0.35502454  0.62256378 -0.4806336
+ -0.27490521  0.64421173  0.50708235 -0.62589627 -0.02271022 -0.18075862
+ -0.46666906 -0.35434171 -0.07220761  0.37371807 -0.07209604  0.47252084
+  0.18407512 -0.08490725  0.31419978 -0.18812879  0.11677048  0.27183554
+  0.00227194].
+Derivative (using logarithm) in x-direction [ 0.30673882  0.24715189 -0.1054587  -0.35469932  0.62461378 -0.48053782
+ -0.27527774  0.64168648  0.50556283 -0.62694789 -0.02390025 -0.17964052
+ -0.46912167 -0.35324203 -0.07340006  0.37428065 -0.07338858  0.4747938
+  0.18456838 -0.08932495  0.31453276 -0.18754882  0.12127639  0.27184459
+  0.00239627].
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Example-2:-Visualization-of-2p_{z}-Orbital-using-Tensor-1D-Grid">
+<h3>Example 2: Visualization of <span class="math notranslate nohighlight">\(2p_{z}\)</span> Orbital using Tensor 1D Grid<a class="headerlink" href="#Example-2:-Visualization-of-2p_{z}-Orbital-using-Tensor-1D-Grid" title="Permalink to this heading"></a></h3>
+<p>Given a function <span class="math notranslate nohighlight">\(f(x, y, z)\)</span>, (e.g. an atomic orbital or electron density) we can evaluate it on a cubic grid and visualize the distribution of the function in space using isosurface values. Here we define a function that plots every point in the grid with a corresponding absolute value of the function greater than a threshold value. The function is latter used to visualize the <span class="math notranslate nohighlight">\(2p_{z}\)</span> orbital.</p>
+<div class="section" id="i.-Utility-Function-For-Plotting-Isosurfaces">
+<h4>i. Utility Function For Plotting Isosurfaces<a class="headerlink" href="#i.-Utility-Function-For-Plotting-Isosurfaces" title="Permalink to this heading"></a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to plot grid points bigger than a given threshold</span>
+<span class="k">def</span> <span class="nf">plot_isosurface</span><span class="p">(</span>
+    <span class="n">grid</span><span class="p">,</span> <span class="n">vals</span><span class="p">,</span> <span class="n">isovalue</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">both_signs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">at_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">noticks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot grid points with values bigger than isovalue.</span>
+
+<span class="sd">    The function plots the grid points with absolute values bigger than isovalue.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grid : Grid</span>
+<span class="sd">        Cartesian grid (it can be uniform or TensorProductGrid) with 3 dimensions.</span>
+<span class="sd">    vals : ndarray</span>
+<span class="sd">        Values of the function on the grid points.</span>
+<span class="sd">    isovalue : float</span>
+<span class="sd">        Value of the isosurface to plot.</span>
+<span class="sd">    both_signs : bool, optional</span>
+<span class="sd">        If True, plot points with negative values too. The default is True.</span>
+<span class="sd">    at_data : tuple, optional</span>
+<span class="sd">        Tuple containing the atomic coordinates and atomic labels. If not None,</span>
+<span class="sd">        it should be a tuple containing (atcoords, atlabels) where atcoords is</span>
+<span class="sd">        a ndarray of shape (natoms, 3) containing the atomic coordinates in</span>
+<span class="sd">        bohr and atlabels is a list of length natoms containing the atomic labels.</span>
+<span class="sd">    title : str, optional</span>
+<span class="sd">        Title of the plot. The default is None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># indices of points with values close to isovalue</span>
+    <span class="n">idx_p_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">vals</span> <span class="o">&gt;</span> <span class="n">isovalue</span><span class="p">)</span>
+    <span class="n">idx_n_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">vals</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">isovalue</span><span class="p">)</span>
+
+    <span class="c1"># points with values close to isovalue</span>
+    <span class="n">p_pts</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">idx_p_vals</span><span class="p">]</span>
+    <span class="n">n_pts</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">idx_n_vals</span><span class="p">]</span>
+
+    <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">zmin</span><span class="p">,</span> <span class="n">zmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">noticks</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_zticks</span><span class="p">([])</span>
+
+    <span class="k">if</span> <span class="n">at_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">at_data</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;at_data should be a tuple containing (atcoords, atlabels)&quot;</span><span class="p">)</span>
+
+        <span class="n">atcoords</span><span class="p">,</span> <span class="n">atlabels</span> <span class="o">=</span> <span class="n">at_data</span>
+        <span class="k">if</span> <span class="n">atcoords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">atlabels</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;atcoords and atlabels should have the same length&quot;</span><span class="p">)</span>
+
+        <span class="c1"># if there are more than 2 atoms set the view point perpendicular to the molecular plane</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">atlabels</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1"># Calculate the centroid of atomic coordinates</span>
+            <span class="n">centroid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">atcoords</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="c1"># Center the atomic coordinates by subtracting the centroid from each point</span>
+            <span class="n">centered_coords</span> <span class="o">=</span> <span class="n">atcoords</span> <span class="o">-</span> <span class="n">centroid</span>
+            <span class="c1"># Perform Singular Value Decomposition (SVD) on the centered coordinates</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">centered_coords</span><span class="p">)</span>
+            <span class="c1"># The normal vector the molecular plane is the last column of the V matrix</span>
+            <span class="n">normal_vector</span> <span class="o">=</span> <span class="n">V</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="c1"># Set the view point perpendicular to the plane</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span>
+                <span class="n">elev</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">normal_vector</span><span class="p">[</span><span class="mi">2</span><span class="p">])),</span>
+                <span class="n">azim</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">normal_vector</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">normal_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span>
+            <span class="p">)</span>
+
+        <span class="c1"># plot the atomic centers</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">atlabels</span><span class="p">)):</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+                <span class="n">atcoords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="n">atcoords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">atcoords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="n">atlabels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+                <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+    <span class="c1"># set axis limits</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_zlim</span><span class="p">((</span><span class="n">zmin</span><span class="p">,</span> <span class="n">zmax</span><span class="p">))</span>
+
+    <span class="c1"># plot points with values bigger than isovalue</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">p_pts</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">p_pts</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">p_pts</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Positive values&quot;</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">both_signs</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+            <span class="n">n_pts</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">n_pts</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">n_pts</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Negative values&quot;</span>
+        <span class="p">)</span>
+    <span class="n">legend</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">lh</span> <span class="ow">in</span> <span class="n">legend</span><span class="o">.</span><span class="n">legendHandles</span><span class="p">:</span>
+        <span class="n">lh</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ii.-Plot-2p_{z}-orbital-from-isosurface-value">
+<h4>ii. Plot <span class="math notranslate nohighlight">\(2p_{z}\)</span> orbital from isosurface value<a class="headerlink" href="#ii.-Plot-2p_{z}-orbital-from-isosurface-value" title="Permalink to this heading"></a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># define 2pz orbital function</span>
+<span class="k">def</span> <span class="nf">psi_2pz</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">a_0</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">r</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a_0</span><span class="p">))</span> <span class="o">*</span> <span class="n">z</span>
+
+
+<span class="c1"># Evaluate the function on the grid.</span>
+<span class="n">psi_vals</span> <span class="o">=</span> <span class="n">psi_2pz</span><span class="p">(</span><span class="o">*</span><span class="n">tensor_grid</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">a_0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">point_idx</span> <span class="o">=</span> <span class="n">target_x</span> <span class="o">=</span> <span class="mf">0.15</span>
+<span class="n">tolerance</span> <span class="o">=</span> <span class="mf">1e-2</span>
+
+<span class="n">plot_isosurface</span><span class="p">(</span><span class="n">tensor_grid</span><span class="p">,</span> <span class="n">psi_vals</span><span class="p">,</span> <span class="n">target_x</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;$2p_</span><span class="si">{z}</span><span class="s2">$ Isosurface (0.15 a.u.)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_16_0.png" src="../_images/notebooks_cubic_grid_16_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Uniform-Grid">
+<h2>Uniform Grid<a class="headerlink" href="#Uniform-Grid" title="Permalink to this heading"></a></h2>
+<p>This is type of cubic grid (a.k.a. rectilinear grid) with evenly-spaced points in each axes. It supports the same properties and functions as Tensor1DGrids.</p>
+<div class="section" id="Example-1:-Constructing-Uniform-Grid-Around-Formaldehyde-Anion">
+<h3>Example 1: Constructing Uniform Grid Around Formaldehyde Anion<a class="headerlink" href="#Example-1:-Constructing-Uniform-Grid-Around-Formaldehyde-Anion" title="Permalink to this heading"></a></h3>
+<p>This example illustates the use of Grid with the <a class="reference external" href="https://github.com/theochem/iodata">IOData</a> package to construct a default grid around a molecule. The easiest method to do so is the “from_molecule” method. This example will showcase this for Formaldehyde anion. The <code class="docutils literal notranslate"><span class="pre">.fchk</span></code> files of which are read using the <a class="reference external" href="https://github.com/theochem/iodata">IOData</a> package and the <code class="docutils literal notranslate"><span class="pre">.fchk</span></code> files are included in <code class="docutils literal notranslate"><span class="pre">doc/notebooks/ch2o_q-1.fchk</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">iodata</span> <span class="kn">import</span> <span class="n">load_one</span>
+
+<span class="c1"># Load the wavefunction information about ch2o</span>
+<span class="n">mol_anion</span> <span class="o">=</span> <span class="n">load_one</span><span class="p">(</span><span class="s2">&quot;ch2o_q-1.fchk&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the atomic coordinates and numbers</span>
+<span class="n">atcoords</span> <span class="o">=</span> <span class="n">mol_anion</span><span class="o">.</span><span class="n">atcoords</span>
+<span class="n">atnums</span> <span class="o">=</span> <span class="n">mol_anion</span><span class="o">.</span><span class="n">atnums</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Atomic Coordinates </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">atcoords</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Atomic Numbers: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">atnums</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">atcoords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">atcoords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">atcoords</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;X-axis&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Y-axis&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;Z-axis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Atomic coordinates of Formaldehyde.&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Atomic Coordinates
+ [[-1.23259516e-32  1.00530930e-32  1.27229733e+00]
+ [ 0.00000000e+00 -1.32254311e-32 -9.95825669e-01]
+ [ 0.00000000e+00  1.77311490e+00 -2.10171229e+00]
+ [-2.17143949e-16 -1.77311490e+00 -2.10171229e+00]]
+Atomic Numbers:
+ [8 6 1 1]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_19_1.png" src="../_images/notebooks_cubic_grid_19_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">grid.cubic</span> <span class="kn">import</span> <span class="n">UniformGrid</span>
+
+<span class="c1"># Construct uniform grid</span>
+<span class="n">uniform_grid</span> <span class="o">=</span> <span class="n">UniformGrid</span><span class="o">.</span><span class="n">from_molecule</span><span class="p">(</span><span class="n">atnums</span><span class="p">,</span> <span class="n">atcoords</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">rotate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The number of points: </span><span class="si">{</span><span class="n">uniform_grid</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The number of dimensions: </span><span class="si">{</span><span class="n">uniform_grid</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The shape of the grid: </span><span class="si">{</span><span class="n">uniform_grid</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The origin of the grid: </span><span class="si">{</span><span class="n">uniform_grid</span><span class="o">.</span><span class="n">origin</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The axes of the grid: </span><span class="si">{</span><span class="n">uniform_grid</span><span class="o">.</span><span class="n">axes</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">atcoords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">atcoords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">atcoords</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">uniform_grid</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">uniform_grid</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">uniform_grid</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;X-axis&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Y-axis&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;Z-axis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Atomic coordinates of Formaldehyde.&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The number of points: 224960
+The number of dimensions: 3.
+The shape of the grid: [74 76 40].
+The origin of the grid: [-2.   3.8 -3.7].
+The axes of the grid: [[ 0.00000000e+00  0.00000000e+00  1.00000000e-01]
+ [ 0.00000000e+00 -1.00000000e-01  0.00000000e+00]
+ [ 1.00000000e-01  1.11022302e-17  0.00000000e+00]].
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_20_1.png" src="../_images/notebooks_cubic_grid_20_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Example-2:-Calculate-and-Visualize-Dual-Descriptor-of-Formaldehyde">
+<h3>Example 2: Calculate and Visualize Dual Descriptor of Formaldehyde<a class="headerlink" href="#Example-2:-Calculate-and-Visualize-Dual-Descriptor-of-Formaldehyde" title="Permalink to this heading"></a></h3>
+<p>This example will illusrate on how to use UniformGrid to compute and visualize the dual descriptor of formaldehyde. The dual descriptor is a function of electron density and its derivatives and is defined as:</p>
+<div class="math notranslate nohighlight">
+\[f^{(2)}(r) = \Delta f(r) = (f^{+}(r) - f^{-}(r)\]</div>
+<p>where <span class="math notranslate nohighlight">\(f^{+}(r)\)</span> and <span class="math notranslate nohighlight">\(f^{-}(r)\)</span> are the Fukui functions defined as:</p>
+<div class="math notranslate nohighlight">
+\[f^{+}(r) = \left(\frac{\partial \rho(r)}{\partial \rho^2}\right)^{+}_{\upsilon(r)} = \rho_{N+1}(r) - \rho_{N}(r)\]</div>
+<div class="math notranslate nohighlight">
+\[f^{-}(r) = \left(\frac{\partial \rho(r)}{\partial \rho^2}\right)^{-}_{\upsilon(r)} = \rho_{N}(r) - \rho_{N-1}(r)\]</div>
+<p>then <span class="math notranslate nohighlight">\(f^{(2)}(r)\)</span> can be written as:</p>
+<div class="math notranslate nohighlight">
+\[f^{(2)}(r) = \rho_{N+1}(r) - \rho_{N-1}(r)\]</div>
+<div class="section" id="i.-Define-utility-function-to-calculate-the-dual-descriptor">
+<h4>i. Define utility function to calculate the dual descriptor<a class="headerlink" href="#i.-Define-utility-function-to-calculate-the-dual-descriptor" title="Permalink to this heading"></a></h4>
+<p>The dual descriptor is evaluated at each grid point as the difference between the electron density of the anion and cation of formaldehyde. The electron density can be evaluated in the grid points using the <a class="reference external" href="https://github.com/theochem/gbasis">GBasis</a> package with the wavefunction read, as above.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gbasis.evals.density</span> <span class="kn">import</span> <span class="n">evaluate_density</span>
+
+<span class="c1"># define function to compute dual descriptor on a grid</span>
+<span class="k">def</span> <span class="nf">compute_dual_descriptor</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">rdm_an</span><span class="p">,</span> <span class="n">rdm_cat</span><span class="p">,</span> <span class="n">basis_an</span><span class="p">,</span> <span class="n">basis_cat</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute dual descriptor on a grid.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grid : Grid</span>
+<span class="sd">        Grid object.</span>
+<span class="sd">    rdm_an : np.ndarray</span>
+<span class="sd">        1-RDM of the anion.</span>
+<span class="sd">    rdm_cat : np.ndarray</span>
+<span class="sd">        1-RDM of the cation.</span>
+<span class="sd">    basis_an : list</span>
+<span class="sd">        Basis set of the anion.</span>
+<span class="sd">    basis_cat : list</span>
+<span class="sd">        Basis set of the cation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># evaluate electron density of cation and anion on the grid</span>
+    <span class="n">dens_vals_cat</span> <span class="o">=</span> <span class="n">evaluate_density</span><span class="p">(</span><span class="n">rdm_cat</span><span class="p">,</span> <span class="n">basis_cat</span><span class="p">,</span> <span class="n">grid</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+    <span class="n">dens_vals_an</span> <span class="o">=</span> <span class="n">evaluate_density</span><span class="p">(</span><span class="n">rdm_an</span><span class="p">,</span> <span class="n">basis_an</span><span class="p">,</span> <span class="n">grid</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+
+    <span class="c1"># compute dual descriptor on the grid</span>
+    <span class="k">return</span> <span class="n">dens_vals_an</span> <span class="o">-</span> <span class="n">dens_vals_cat</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ii.-Calculate-and-visualize-dual-descriptor">
+<h4>ii. Calculate and visualize dual descriptor<a class="headerlink" href="#ii.-Calculate-and-visualize-dual-descriptor" title="Permalink to this heading"></a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">iodata</span> <span class="kn">import</span> <span class="n">load_one</span>
+<span class="kn">from</span> <span class="nn">gbasis.wrappers</span> <span class="kn">import</span> <span class="n">from_iodata</span>
+
+<span class="c1"># load formaldehyde cation and anion fchk files</span>
+<span class="n">mol_cation</span> <span class="o">=</span> <span class="n">load_one</span><span class="p">(</span><span class="s2">&quot;ch2o_q+1.fchk&quot;</span><span class="p">)</span>
+
+<span class="c1"># Construct molecular basis from wave-function information read by IOData</span>
+<span class="n">basis_cat</span> <span class="o">=</span> <span class="n">from_iodata</span><span class="p">(</span><span class="n">mol_cation</span><span class="p">)</span>
+<span class="n">basis_an</span> <span class="o">=</span> <span class="n">from_iodata</span><span class="p">(</span><span class="n">mol_anion</span><span class="p">)</span>
+
+<span class="c1"># get rdms for cation and anion</span>
+<span class="n">rdm_cat</span> <span class="o">=</span> <span class="n">mol_cation</span><span class="o">.</span><span class="n">one_rdms</span><span class="p">[</span><span class="s2">&quot;scf&quot;</span><span class="p">]</span>
+<span class="n">rdm_an</span> <span class="o">=</span> <span class="n">mol_anion</span><span class="o">.</span><span class="n">one_rdms</span><span class="p">[</span><span class="s2">&quot;scf&quot;</span><span class="p">]</span>
+
+<span class="c1"># compute dual descriptor on the grid</span>
+<span class="n">dd</span> <span class="o">=</span> <span class="n">compute_dual_descriptor</span><span class="p">(</span><span class="n">uniform_grid</span><span class="p">,</span> <span class="n">rdm_an</span><span class="p">,</span> <span class="n">rdm_cat</span><span class="p">,</span> <span class="n">basis_an</span><span class="p">,</span> <span class="n">basis_cat</span><span class="p">)</span>
+
+<span class="c1"># plot dual descriptor isosurface</span>
+<span class="n">mol_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">atcoords</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">])</span>
+<span class="n">plot_isosurface</span><span class="p">(</span>
+    <span class="n">uniform_grid</span><span class="p">,</span> <span class="n">dd</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="n">at_data</span><span class="o">=</span><span class="n">mol_data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Dual Descriptor Isosurface&quot;</span><span class="p">,</span> <span class="n">noticks</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Positive values (red) correspond to nucleophilic regions&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Negative values (blue) correspond to electrophilic regions&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_25_0.png" src="../_images/notebooks_cubic_grid_25_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Positive values (red) correspond to nucleophilic regions
+Negative values (blue) correspond to electrophilic regions
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Example-3:-Integrate-The-Dual-Descriptor-Domains">
+<h3>Example 3: Integrate The Dual Descriptor Domains<a class="headerlink" href="#Example-3:-Integrate-The-Dual-Descriptor-Domains" title="Permalink to this heading"></a></h3>
+<p>All classes in <a class="reference external" href="https://github.com/theochem/grid">Grid</a> offers an easy method to integrate. Here we integrate the different lobes of the dual descriptor. This can be used to assess the relevance of electrophilic and nucleophilic regions of the molecule.</p>
+<div class="section" id="i.-Define-utility-function-to-extract-dual-descriptor-domains">
+<h4>i. Define utility function to extract dual descriptor domains<a class="headerlink" href="#i.-Define-utility-function-to-extract-dual-descriptor-domains" title="Permalink to this heading"></a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define utility function for grouping grid points in domains</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.csgraph</span> <span class="kn">import</span> <span class="n">connected_components</span>
+
+
+<span class="c1"># function to get grid points indices for same sign connected points with absolute</span>
+<span class="c1"># value  greater than a threshold (select domain defined by isovalue)</span>
+<span class="k">def</span> <span class="nf">get_domains</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">vals</span><span class="p">,</span> <span class="n">isovalue</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get grid points indices for domains with same sign connected points.</span>
+
+<span class="sd">    The function returns the indices of the grid points that belong to the same domain. A domain</span>
+<span class="sd">    is defined by a set of connected points with the same sign and absolute value greater than</span>
+<span class="sd">    isovalue.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grid : Grid</span>
+<span class="sd">        Cartesian grid (it can be uniform or TensorProductGrid) with 3 dimensions.</span>
+<span class="sd">    vals : ndarray</span>
+<span class="sd">        Values of the function on the grid points.</span>
+<span class="sd">    isovalue : float</span>
+<span class="sd">        Value of the isosurface used to define the domains.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        Tuple containing two lists. The first list contains domains with positive values and the</span>
+<span class="sd">        second list contains domains with negative values. Each domain is a np.array with the</span>
+<span class="sd">        indexes of the grid points that belong to the same domain.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># indices of points with value modulus greater than isovalue</span>
+    <span class="n">idx_p_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">vals</span> <span class="o">&gt;</span> <span class="n">isovalue</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># positive values</span>
+    <span class="n">idx_n_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">vals</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">isovalue</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># negative values</span>
+
+    <span class="c1"># create adjacency matrix selected points with same sign</span>
+    <span class="n">p_vals_adj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_p_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">idx_p_vals</span><span class="p">)))</span>
+    <span class="n">n_vals_adj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_n_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">idx_n_vals</span><span class="p">)))</span>
+
+    <span class="c1"># try all combinations of selected points with same sign (positive values)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_p_vals</span><span class="p">)),</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="c1"># get coordinate indices of the points</span>
+        <span class="n">i_coord_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">index_to_coordinates</span><span class="p">(</span><span class="n">idx_p_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="n">j_coord_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">index_to_coordinates</span><span class="p">(</span><span class="n">idx_p_vals</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+        <span class="c1"># two points are adjacent if they differ by at most 1 in each coordinate index</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">i_coord_idx</span> <span class="o">-</span> <span class="n">j_coord_idx</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">p_vals_adj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># try all combinations of selected points with same sign (negative values)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_n_vals</span><span class="p">)),</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">i_coord_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">index_to_coordinates</span><span class="p">(</span><span class="n">idx_n_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="n">j_coord_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">index_to_coordinates</span><span class="p">(</span><span class="n">idx_n_vals</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+        <span class="c1"># two points are adjacent if they differ by at most 1 in each coordinate</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">i_coord_idx</span> <span class="o">-</span> <span class="n">j_coord_idx</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">n_vals_adj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># returns an array of integers, each integer represents domain and the indexes where</span>
+    <span class="c1"># it appear are the points belonging to that domain</span>
+    <span class="c1"># example: [0,1,0,0,1,1] -&gt; points 0,2,3 belong to domain 0</span>
+    <span class="c1">#                        -&gt; points 1,4,5 belong to domain 1</span>
+    <span class="n">p_groups</span> <span class="o">=</span> <span class="n">connected_components</span><span class="p">(</span><span class="n">p_vals_adj</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">n_groups</span> <span class="o">=</span> <span class="n">connected_components</span><span class="p">(</span><span class="n">n_vals_adj</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># creates a list with the domains. Each element of the list is a np.array with the indexes</span>
+    <span class="c1"># of the selected points that belong to the same domain.</span>
+    <span class="c1"># example: [0,1,0,0,1,1] -&gt; [[0,2,3],[1,4,5]]</span>
+    <span class="n">p_domains</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">p_groups</span> <span class="o">==</span> <span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">p_groups</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
+    <span class="n">n_domains</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">n_groups</span> <span class="o">==</span> <span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">n_groups</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
+
+    <span class="c1"># transform indexes of selected points to indexes of all grid points for each domain</span>
+    <span class="n">p_domains</span> <span class="o">=</span> <span class="p">[</span><span class="n">idx_p_vals</span><span class="p">[</span><span class="n">domain</span><span class="p">]</span> <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">p_domains</span><span class="p">]</span>
+    <span class="n">n_domains</span> <span class="o">=</span> <span class="p">[</span><span class="n">idx_n_vals</span><span class="p">[</span><span class="n">domain</span><span class="p">]</span> <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">n_domains</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">p_domains</span><span class="p">,</span> <span class="n">n_domains</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ii.-Select-and-integrate-the-positive-(electrophilic)-domains-of-the-dual-descriptor">
+<h4>ii. Select and integrate the positive (electrophilic) domains of the dual descriptor<a class="headerlink" href="#ii.-Select-and-integrate-the-positive-(electrophilic)-domains-of-the-dual-descriptor" title="Permalink to this heading"></a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get dual descriptor domains, integrate and plot them</span>
+<span class="n">p_domains</span><span class="p">,</span> <span class="n">n_domains</span> <span class="o">=</span> <span class="n">get_domains</span><span class="p">(</span><span class="n">uniform_grid</span><span class="p">,</span> <span class="n">dd</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">p_domains</span><span class="p">:</span>
+    <span class="n">domain_vals</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">domain_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dd</span><span class="p">)),</span> <span class="n">domain</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">domain_vals</span><span class="p">[</span><span class="n">domain_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="n">plot_isosurface</span><span class="p">(</span>
+        <span class="n">uniform_grid</span><span class="p">,</span>
+        <span class="n">domain_vals</span><span class="p">,</span>
+        <span class="mf">0.001</span><span class="p">,</span>
+        <span class="n">at_data</span><span class="o">=</span><span class="n">mol_data</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Domain   Integral: </span><span class="si">{</span><span class="n">uniform_grid</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">domain_vals</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">noticks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_31_0.png" src="../_images/notebooks_cubic_grid_31_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_31_1.png" src="../_images/notebooks_cubic_grid_31_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_31_2.png" src="../_images/notebooks_cubic_grid_31_2.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_31_3.png" src="../_images/notebooks_cubic_grid_31_3.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_31_4.png" src="../_images/notebooks_cubic_grid_31_4.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_31_5.png" src="../_images/notebooks_cubic_grid_31_5.png" />
+</div>
+</div>
+</div>
+<div class="section" id="iii.-Select-and-integrate-the-negative-(nucleophilic)-domains-of-the-dual-descriptor">
+<h4>iii. Select and integrate the negative (nucleophilic) domains of the dual descriptor<a class="headerlink" href="#iii.-Select-and-integrate-the-negative-(nucleophilic)-domains-of-the-dual-descriptor" title="Permalink to this heading"></a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">n_domains</span><span class="p">:</span>
+    <span class="n">domain_vals</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">domain_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dd</span><span class="p">)),</span> <span class="n">domain</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">domain_vals</span><span class="p">[</span><span class="n">domain_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="n">plot_isosurface</span><span class="p">(</span>
+        <span class="n">uniform_grid</span><span class="p">,</span>
+        <span class="n">domain_vals</span><span class="p">,</span>
+        <span class="mf">0.001</span><span class="p">,</span>
+        <span class="n">at_data</span><span class="o">=</span><span class="n">mol_data</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Domain Integral: </span><span class="si">{</span><span class="n">uniform_grid</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">domain_vals</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">noticks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_33_0.png" src="../_images/notebooks_cubic_grid_33_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_cubic_grid_33_1.png" src="../_images/notebooks_cubic_grid_33_1.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="molecular_grid.html" class="btn btn-neutral float-left" title="Molecular Grids" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="interpolation_poisson.html" class="btn btn-neutral float-right" title="Interpolation and Solving Poisson’s Equation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QC-Devs.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
